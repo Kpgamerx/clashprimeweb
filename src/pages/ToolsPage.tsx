@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Zap, Target, Wrench, Calculator, ArrowUpRight, Check, X, AlertTriangle } from 'lucide-react';
+import { SPELL_ICONS } from '../data/assetMap';
 
 type ToolTab = 'zapquaker' | 'giantarrow' | 'bob';
 
@@ -117,7 +118,12 @@ function ZapquakerTool() {
         {/* Lightning */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-text-secondary">Lightning Spell</span>
+            <span className="flex items-center gap-1.5 text-xs text-text-secondary">
+              {SPELL_ICONS['Lightning Spell'] && (
+                <img src={SPELL_ICONS['Lightning Spell']} alt="" className="w-4 h-4 object-contain" />
+              )}
+              Lightning Spell
+            </span>
             <span className="text-xs text-text-muted">Level {lightningLevel}</span>
           </div>
           <div className="flex items-center gap-3">
@@ -141,7 +147,12 @@ function ZapquakerTool() {
         {/* Earthquake */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-text-secondary">Earthquake Spell</span>
+            <span className="flex items-center gap-1.5 text-xs text-text-secondary">
+              {SPELL_ICONS['Earthquake Spell'] && (
+                <img src={SPELL_ICONS['Earthquake Spell']} alt="" className="w-4 h-4 object-contain" />
+              )}
+              Earthquake Spell
+            </span>
             <span className="text-xs text-text-muted">Level {earthquakeLevel}</span>
           </div>
           <div className="flex items-center gap-3">

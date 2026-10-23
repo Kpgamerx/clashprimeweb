@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { mockBaseLayouts, mockArmyCompositions, mockPlayer } from '../data/mockData';
+import { TROOP_ICONS, SPELL_ICONS, HERO_ICONS } from '../data/assetMap';
 import { BookOpen, LayoutGrid, Users, Star, Heart, ExternalLink, Copy, Search, Filter } from 'lucide-react';
 
 type LibraryTab = 'bases' | 'armies';
@@ -271,9 +272,12 @@ function ArmyLibrary() {
                   {/* Troops */}
                   <div className="mt-3 space-y-1">
                     <p className="text-xs text-text-muted font-medium">Troops</p>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1.5">
                       {army.troops.map((t, i) => (
-                        <span key={i} className="text-xs px-2 py-0.5 bg-bg-tertiary text-text-secondary rounded">
+                        <span key={i} className="flex items-center gap-1 text-xs px-2 py-0.5 bg-bg-tertiary text-text-secondary rounded">
+                          {TROOP_ICONS[t.name] && (
+                            <img src={TROOP_ICONS[t.name]} alt={t.name} className="w-4 h-4 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                          )}
                           {t.name} ×{t.count}
                         </span>
                       ))}
@@ -283,9 +287,12 @@ function ArmyLibrary() {
                   {/* Spells */}
                   <div className="mt-2 space-y-1">
                     <p className="text-xs text-text-muted font-medium">Spells</p>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1.5">
                       {army.spells.map((s, i) => (
-                        <span key={i} className="text-xs px-2 py-0.5 bg-bg-tertiary text-text-secondary rounded">
+                        <span key={i} className="flex items-center gap-1 text-xs px-2 py-0.5 bg-bg-tertiary text-text-secondary rounded">
+                          {SPELL_ICONS[s.name] && (
+                            <img src={SPELL_ICONS[s.name]} alt={s.name} className="w-4 h-4 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                          )}
                           {s.name} ×{s.count}
                         </span>
                       ))}
@@ -295,9 +302,12 @@ function ArmyLibrary() {
                   {/* Heroes */}
                   <div className="mt-2 space-y-1">
                     <p className="text-xs text-text-muted font-medium">Heroes</p>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1.5">
                       {army.heroes.map((h, i) => (
-                        <span key={i} className="text-xs px-2 py-0.5 bg-bg-tertiary text-text-secondary rounded">
+                        <span key={i} className="flex items-center gap-1 text-xs px-2 py-0.5 bg-bg-tertiary text-text-secondary rounded">
+                          {HERO_ICONS[h.name] && (
+                            <img src={HERO_ICONS[h.name]} alt={h.name} className="w-4 h-4 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+                          )}
                           {h.name} Lv.{h.level}
                         </span>
                       ))}

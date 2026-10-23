@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAppStore } from '../store/useAppStore';
+import { APP_ICON, DEVELOPER_AVATAR } from '../data/assetMap';
 import {
   Settings as SettingsIcon,
   Moon,
@@ -374,11 +375,22 @@ function AboutSection() {
   return (
     <div className="space-y-4">
       <div className="text-center py-2">
-        <div className="w-12 h-12 bg-text-primary rounded-lg flex items-center justify-center mx-auto mb-2">
-          <span className="text-bg-primary font-bold text-lg">CP</span>
+        <div className="w-16 h-16 rounded-lg overflow-hidden mx-auto mb-2">
+          <img src={APP_ICON} alt="ClashPrime" className="w-full h-full object-contain" />
         </div>
         <p className="text-sm font-semibold text-text-primary">ClashPrime</p>
         <p className="text-xs text-text-muted">v7.2.0 (Web)</p>
+      </div>
+
+      {/* Developer */}
+      <div className="flex items-center gap-3 py-3 border-t border-border">
+        <div className="w-10 h-10 rounded-full overflow-hidden bg-bg-tertiary">
+          <img src={DEVELOPER_AVATAR} alt="Developer" className="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p className="text-sm font-medium text-text-primary">Farhan Zafar</p>
+          <p className="text-xs text-text-muted">Developer</p>
+        </div>
       </div>
 
       <div className="space-y-2">

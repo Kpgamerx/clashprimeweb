@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { mockPlayer } from '../data/mockData';
 import { useAppStore } from '../store/useAppStore';
+import { TROOP_ICONS, HERO_ICONS, SPELL_ICONS } from '../data/assetMap';
 import { Sword, Gem, Crown, FlaskConical, Sparkles, ChevronDown, ChevronRight, Home, Hammer } from 'lucide-react';
 
 type ArmyCategory = 'troops' | 'heroes' | 'spells' | 'pets' | 'equipment';
@@ -13,6 +14,15 @@ const categoryIcons: Record<ArmyCategory, React.ReactNode> = {
   pets: <Sparkles size={16} />,
   equipment: <Gem size={16} />,
 };
+
+function getIconForCategory(cat: ArmyCategory, name: string): string | null {
+  switch (cat) {
+    case 'troops': return TROOP_ICONS[name] || null;
+    case 'heroes': return HERO_ICONS[name] || null;
+    case 'spells': return SPELL_ICONS[name] || null;
+    default: return null;
+  }
+}
 
 export default function ArmyPage() {
   const { darkMode } = useAppStore();
@@ -114,11 +124,26 @@ export default function ArmyPage() {
               onClick={() => setExpandedItem(expandedItem === item.id ? null : item.id)}
               className="w-full flex items-center gap-3 p-3 text-left hover:bg-bg-hover transition-colors"
             >
-              <div className={`w-10 h-10 rounded-md flex items-center justify-center
+              <div className={`w-10 h-10 rounded-md flex items-center justify-center overflow-hidden
                 ${item.isMaxed ? 'bg-gold/10' : 'bg-bg-tertiary'}`}>
-                <span className={`text-sm font-bold ${item.isMaxed ? 'text-gold' : 'text-text-secondary'}`}>
-                  {activeCategory === 'troops' ? '⚔' : activeCategory === 'heroes' ? '♛' : '✦'}
-                </span>
+                {(() => {
+                  const iconSrc = getIconForCategory(activeCategory, item.name);
+                  if (iconSrc) {
+                    return (
+                      <img
+                        src={iconSrc}
+                        alt={item.name}
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                      />
+                    );
+                  }
+                  return (
+                    <span className={`text-sm font-bold ${item.isMaxed ? 'text-gold' : 'text-text-secondary'}`}>
+                      {activeCategory === 'troops' ? '⚔' : activeCategory === 'heroes' ? '♛' : '✦'}
+                    </span>
+                  );
+                })()}
               </div>
               <div className="flex-1 min-w-0">
                 <p className={`text-sm font-medium ${item.isMaxed ? 'text-gold' : 'text-text-primary'}`}>

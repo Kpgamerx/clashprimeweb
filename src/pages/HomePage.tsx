@@ -1,5 +1,6 @@
 import { useAppStore } from '../store/useAppStore';
 import { mockPlayer, mockEvents } from '../data/mockData';
+import { getTownHallImage, HERO_ICONS, APP_ICON } from '../data/assetMap';
 import {
   Trophy,
   Star,
@@ -72,8 +73,13 @@ export default function HomePage() {
       {/* League Card */}
       <div className="bg-bg-card border border-border rounded-md p-4">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-bg-tertiary rounded-md flex items-center justify-center">
-            <Crown size={24} className="text-gold" />
+          <div className="w-12 h-12 bg-bg-tertiary rounded-md flex items-center justify-center overflow-hidden">
+            <img
+              src={getTownHallImage(player.townHallLevel)}
+              alt={`Town Hall ${player.townHallLevel}`}
+              className="w-full h-full object-contain"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
           </div>
           <div className="flex-1">
             <p className="text-sm text-text-secondary">League</p>
@@ -204,8 +210,13 @@ export default function HomePage() {
         <div className="space-y-3">
           {player.heroes.map((hero) => (
             <div key={hero.id} className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-bg-tertiary rounded-md flex items-center justify-center">
-                <Crown size={14} className={hero.isMaxed ? 'text-gold' : 'text-text-secondary'} />
+              <div className="w-8 h-8 bg-bg-tertiary rounded-md flex items-center justify-center overflow-hidden">
+                <img
+                  src={HERO_ICONS[hero.name]}
+                  alt={hero.name}
+                  className="w-full h-full object-contain"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                />
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">

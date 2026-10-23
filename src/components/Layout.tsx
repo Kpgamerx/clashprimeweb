@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAppStore } from '../store/useAppStore';
+import { APP_ICON } from '../data/assetMap';
 import {
   Home,
   Swords,
@@ -35,8 +36,8 @@ export default function Layout({ children }: LayoutProps) {
       <aside className="hidden md:flex flex-col w-16 lg:w-56 bg-bg-secondary border-r border-border fixed h-full z-40">
         <div className="p-4 border-b border-border">
           <h1 className="hidden lg:block text-lg font-bold text-text-primary">ClashPrime</h1>
-          <div className="lg:hidden w-8 h-8 bg-text-primary rounded-md flex items-center justify-center">
-            <span className="text-bg-primary font-bold text-sm">CP</span>
+          <div className="lg:hidden w-8 h-8 rounded-md overflow-hidden">
+            <img src={APP_ICON} alt="ClashPrime" className="w-full h-full object-contain" />
           </div>
         </div>
         <nav className="flex-1 py-4 overflow-y-auto">

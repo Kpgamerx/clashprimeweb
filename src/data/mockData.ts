@@ -62,6 +62,12 @@ export const mockPlayer: PlayerProfile = {
     { id: 'yeti', name: 'Yeti', category: 'troop', currentLevel: 6, maxLevel: 6, isMaxed: true },
     { id: 'electro_dragon', name: 'Electro Dragon', category: 'troop', currentLevel: 6, maxLevel: 6, isMaxed: true },
     { id: 'root_rider', name: 'Root Rider', category: 'troop', currentLevel: 4, maxLevel: 5, isMaxed: false },
+    { id: 'minion', name: 'Minion', category: 'troop', currentLevel: 10, maxLevel: 10, isMaxed: true },
+    { id: 'miner', name: 'Miner', category: 'troop', currentLevel: 9, maxLevel: 10, isMaxed: false },
+    { id: 'ice_golem', name: 'Ice Golem', category: 'troop', currentLevel: 7, maxLevel: 7, isMaxed: true },
+    { id: 'electro_titan', name: 'Electro Titan', category: 'troop', currentLevel: 4, maxLevel: 5, isMaxed: false },
+    { id: 'dragon_rider', name: 'Dragon Rider', category: 'troop', currentLevel: 5, maxLevel: 6, isMaxed: false },
+    { id: 'headhunter', name: 'Headhunter', category: 'troop', currentLevel: 3, maxLevel: 4, isMaxed: false },
   ],
   heroes: [
     { id: 'barbarian_king', name: 'Barbarian King', currentLevel: 85, maxLevel: 90, isMaxed: false },
@@ -222,6 +228,7 @@ export const mockArmyCompositions: ArmyComposition[] = [
       { name: 'Yeti', level: 6, count: 4 },
       { name: 'Healer', level: 7, count: 5 },
       { name: 'Super Wizard', level: 9, count: 2 },
+      { name: 'Minion', level: 10, count: 6 },
     ],
     spells: [
       { name: 'Lightning Spell', level: 12, count: 4 },

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { mockPlayer } from '../data/mockData';
 import { useAppStore } from '../store/useAppStore';
+import { DEFENSE_ICONS, RESOURCE_ICONS, ARMY_BUILDING_ICONS, getTownHallImage } from '../data/assetMap';
 import { Building2, ChevronDown, ChevronRight, Home, Hammer, Filter } from 'lucide-react';
 import { BuildingCategory } from '../types/coc';
 
@@ -17,6 +18,11 @@ const categoryLabels: Record<BuildingCategory, string> = {
 };
 
 const categoryOrder: BuildingCategory[] = ['defense', 'resources', 'army', 'traps', 'walls', 'heroes', 'crafted'];
+
+function getBuildingImage(name: string): string | null {
+  if (name === 'Town Hall') return getTownHallImage(16);
+  return DEFENSE_ICONS[name] || RESOURCE_ICONS[name] || ARMY_BUILDING_ICONS[name] || null;
+}
 
 export default function BuildingsPage() {
   const { darkMode, settings } = useAppStore();
@@ -142,9 +148,22 @@ function BuildingCard({
         onClick={onToggle}
         className="w-full flex items-center gap-3 p-3 text-left hover:bg-bg-hover transition-colors"
       >
-        <div className={`w-10 h-10 rounded-md flex items-center justify-center
+        <div className={`w-10 h-10 rounded-md flex items-center justify-center overflow-hidden
           ${building.isMaxed ? 'bg-gold/10' : 'bg-bg-tertiary'}`}>
-          <Building2 size={18} className={building.isMaxed ? 'text-gold' : 'text-text-secondary'} />
+          {(() => {
+            const imgSrc = getBuildingImage(building.name);
+            if (imgSrc) {
+              return (
+                <img
+                  src={imgSrc}
+                  alt={building.name}
+                  className="w-full h-full object-contain"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                />
+              );
+            }
+            return <Building2 size={18} className={building.isMaxed ? 'text-gold' : 'text-text-secondary'} />;
+          })()}
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">

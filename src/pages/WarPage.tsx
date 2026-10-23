@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Shield, Swords, Trophy, TrendingUp, ChevronDown, ChevronRight } from 'lucide-react';
+import { STAT_IMAGES } from '../data/assetMap';
 
 interface WarMember {
   name: string;
@@ -180,11 +181,11 @@ export default function WarPage() {
                     <span className="text-xs text-text-muted">{war.date}</span>
                   </div>
                   <div className="flex items-center gap-3 mt-1">
-                    <span className="text-xs text-text-secondary">
+                    <span className="text-xs text-text-secondary flex items-center gap-1">
+                      <img src={STAT_IMAGES.warStars} alt="★" className="w-3 h-3 object-contain opacity-70" />
                       <span className="text-text-primary font-medium">{war.stars}</span>
                       <span className="text-text-muted"> vs </span>
                       <span className="font-medium">{war.opponentStars}</span>
-                      <span className="text-text-muted"> ★</span>
                     </span>
                     <span className="text-xs text-text-muted">
                       {war.destruction.toFixed(0)}% vs {war.opponentDestruction.toFixed(0)}%
@@ -242,8 +243,9 @@ export default function WarPage() {
                     }`}>
                       {round.result.toUpperCase()}
                     </span>
-                    <span className="text-xs text-text-muted">
-                      {round.stars} ★ vs {round.opponentStars} ★
+                    <span className="text-xs text-text-muted flex items-center gap-1">
+                      <img src={STAT_IMAGES.warStars} alt="★" className="w-3 h-3 object-contain opacity-70" />
+                      {round.stars} vs {round.opponentStars}
                     </span>
                   </div>
                 </div>
